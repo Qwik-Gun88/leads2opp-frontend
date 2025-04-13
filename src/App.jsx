@@ -5,7 +5,7 @@ import ContactsCentre from './ContactsCentre';
 import ContactsManager from './ContactsManager';
 import AnalyticsReporting from './AnalyticsReporting';
 import { Box, Typography } from '@mui/material';
-import DesignSequence from './ pages/DesignSequence';
+import DesignSequence from './DesignSequence';
 
 const Placeholder = ({ title }) => (
   <Box sx={{ p: 4 }}>
