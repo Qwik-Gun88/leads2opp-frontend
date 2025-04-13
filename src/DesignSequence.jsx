@@ -1,12 +1,12 @@
-import React from "react";
+// frontend/src/DesignSequence.jsx
+import React from 'react';
+import { Box, Typography } from '@mui/material';
 
-const DesignSequence = () => {
-  return (
-    <div>
-      <h2>Design Your Sequence</h2>
-      <p>This is where you build your outreach steps.</p>
-    </div>
-  );
-};
+const DesignSequence = () => (
+  <Box sx={{ p: 4 }}>
+    <Typography variant="h4" gutterBottom>Design Sequence</Typography>
+    <Typography variant="body1">This sequence builder will go here!</Typography>
+  </Box>
+);
 
 export default DesignSequence;
