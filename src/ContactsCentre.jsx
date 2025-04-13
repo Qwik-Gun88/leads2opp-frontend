@@ -36,7 +36,19 @@ const ContactsCentre = () => {
     location: ""
   });
   
-
+  useEffect(() => {
+    const fetchContacts = async () => {
+      try {
+        const response = await axios.get("https://leads2opp-backend-url.com/api/contacts"); // replace with your backend
+        setContacts(response.data.contacts);
+      } catch (error) {
+        console.error("❌ Failed to fetch contacts:", error);
+      }
+    };
+  
+    fetchContacts();
+  }, []);
+  
   useEffect(() => {
     const term = searchTerm.toLowerCase();
   
