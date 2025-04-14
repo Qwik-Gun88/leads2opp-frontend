@@ -25,8 +25,8 @@ const InnerApp = () => {
   <Route path="/analytics-reporting" element={<AnalyticsReporting />} />
   <Route path="/contacts-manager" element={<ContactsManager />} />
   <Route path="/design-sequence" element={<DesignSequence />} />
-  <Route path="/app" element={<div style={{ padding: 40 }}><h1>Hello from /app!</h1></div>} />
-</Routes>
+  <Route path="/app" element={<DashboardLayout />} />
+  </Routes>
   );
 };
 
