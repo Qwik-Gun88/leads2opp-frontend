@@ -1,103 +1,97 @@
 import React from 'react';
-import { Box, Button, Container, Typography, Grid } from '@mui/material';
+import { AppBar, Toolbar, Box, Button, Container, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import CloudIcon from '@mui/icons-material/Cloud';
-import GpsFixedIcon from '@mui/icons-material/GpsFixed';
-import DiamondIcon from '@mui/icons-material/Diamond';
-import EmojiObjectsIcon from '@mui/icons-material/EmojiObjects';
 
 const Homepage = () => {
   const navigate = useNavigate();
 
   return (
-    <Box sx={{ backgroundColor: '#050f1b', minHeight: '100vh', color: 'white', overflowX: 'hidden' }}>
+    <Box sx={{ minHeight: '100vh', background: '#0b0f19', color: 'white', fontFamily: 'Inter, sans-serif' }}>
+      {/* App Bar */}
+      <AppBar position="static" sx={{ background: 'transparent', boxShadow: 'none', py: 2 }}>
+        <Toolbar sx={{ justifyContent: 'space-between', px: 4 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <img src="/assets/logo.png" alt="leads2opp logo" style={{ height: 40, marginRight: 12 }} />
+            <Typography variant="h6" sx={{ fontWeight: 700, color: '#00e676' }}>
+              leads<span style={{ color: '#fff' }}>2opp</span>
+            </Typography>
+          </Box>
+          <Box sx={{ display: 'flex', gap: 4 }}>
+            <Button sx={{ color: '#cfd8dc' }}>About</Button>
+            <Button sx={{ color: '#cfd8dc' }}>Features</Button>
+            <Button sx={{ color: '#cfd8dc' }}>Pricing</Button>
+            <Button sx={{ color: '#cfd8dc' }}>Contact</Button>
+          </Box>
+        </Toolbar>
+      </AppBar>
+
       {/* Hero Section */}
-      <Box sx={{ textAlign: 'center', py: 12, background: 'linear-gradient(to bottom, #050f1b, #0a2540)' }}>
-        <CloudIcon sx={{ fontSize: 80, color: '#00e676', mb: 3 }} />
-        <Typography variant="h3" fontWeight={700}>
-          Innovative Sales<br />Engagement Platform
+      <Container sx={{ py: 12, textAlign: 'center' }}>
+        <img src="/assets/logo.png" alt="Cloud Glow" style={{ height: 90, marginBottom: 20 }} />
+        <Typography variant="h3" fontWeight={700} gutterBottom>
+          Innovative Sales <br /> Engagement Platform
         </Typography>
         <Button
           variant="contained"
-          color="primary"
-          sx={{ mt: 4, fontWeight: 'bold', px: 5, py: 1.5, fontSize: '1rem', borderRadius: 2 }}
+          sx={{
+            mt: 4,
+            px: 5,
+            py: 1.5,
+            borderRadius: 2,
+            fontWeight: 'bold',
+            background: '#2979ff',
+            '&:hover': { background: '#2962ff' }
+          }}
           onClick={() => navigate('/app')}
         >
-          REQUEST A DEMO
+          Request a Demo
         </Button>
-      </Box>
+      </Container>
 
-      {/* Features Section */}
-      <Box sx={{ py: 10, px: 4, background: 'radial-gradient(circle at top, #0a2540, #050f1b)' }}>
-        <Container maxWidth="lg">
-          <Grid container spacing={4} justifyContent="center">
-            <Grid item xs={12} sm={6} md={4}>
-              <Box
-                sx={{
-                  p: 4,
-                  borderRadius: 4,
-                  textAlign: 'center',
-                  background: 'linear-gradient(145deg, #0f2947, #091f35)',
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
-                }}
-              >
-                <GpsFixedIcon sx={{ fontSize: 50, color: '#2196f3' }} />
-                <Typography variant="h6" fontWeight={600} mt={2}>
-                  Our Mission
-                </Typography>
-                <Typography variant="body2" mt={1}>
-                  Our mission is to provide innovative solutions to transform sales opportunities and drive customer success.
-                </Typography>
-              </Box>
-            </Grid>
-
-            <Grid item xs={12} sm={6} md={4}>
-              <Box
-                sx={{
-                  p: 4,
-                  borderRadius: 4,
-                  textAlign: 'center',
-                  background: 'linear-gradient(145deg, #0f2947, #091f35)',
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
-                }}
-              >
-                <DiamondIcon sx={{ fontSize: 50, color: '#00bcd4' }} />
-                <Typography variant="h6" fontWeight={600} mt={2}>
-                  Core Values
-                </Typography>
-                <Typography variant="body2" mt={1}>
-                  Integrity, innovation and customer-centricity are at the heart of everything we do.
-                </Typography>
-              </Box>
-            </Grid>
-
-            <Grid item xs={12} sm={6} md={4}>
-              <Box
-                sx={{
-                  p: 4,
-                  borderRadius: 4,
-                  textAlign: 'center',
-                  background: 'linear-gradient(145deg, #0f2947, #091f35)',
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
-                }}
-              >
-                <EmojiObjectsIcon sx={{ fontSize: 50, color: '#ffca28' }} />
-                <Typography variant="h6" fontWeight={600} mt={2}>
-                  Why leads2opp?
-                </Typography>
-                <Typography variant="body2" mt={1}>
-                  We offer cutting-edge tools powered by AI and machine learning to enhance your sales strategy.
-                </Typography>
-              </Box>
-            </Grid>
-          </Grid>
+      {/* Feature Section */}
+      <Box sx={{ background: 'linear-gradient(180deg, #0b0f19, #121e2e)', py: 10 }}>
+        <Container sx={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap', gap: 4 }}>
+          {[
+            {
+              title: 'Our Mission',
+              desc: 'We deliver AI-powered outreach tools that transform sales productivity.',
+              icon: '🎯'
+            },
+            {
+              title: 'Core Values',
+              desc: 'Innovation, transparency, and customer-first execution guide every decision.',
+              icon: '💎'
+            },
+            {
+              title: 'Why leads2opp?',
+              desc: 'Automated dialers, cadence engines, and CRM sync built into one sleek platform.',
+              icon: '🚀'
+            }
+          ].map(({ title, desc, icon }) => (
+            <Box
+              key={title}
+              sx={{
+                background: '#fff',
+                color: '#0a1929',
+                borderRadius: 3,
+                maxWidth: 300,
+                p: 4,
+                textAlign: 'center',
+                boxShadow: 4
+              }}
+            >
+              <Typography variant="h4" mb={2}>{icon}</Typography>
+              <Typography variant="h6" fontWeight={700} mb={1}>{title}</Typography>
+              <Typography variant="body2" color="text.secondary">{desc}</Typography>
+            </Box>
+          ))}
         </Container>
       </Box>
 
       {/* Footer */}
-      <Box sx={{ py: 3, textAlign: 'center', backgroundColor: '#0a192f', color: '#cfd8dc' }}>
+      <Box sx={{ backgroundColor: '#0b0f19', color: '#cfd8dc', py: 6, textAlign: 'center' }}>
         <Typography variant="body2">
-          © {new Date().getFullYear()} leads2opp · Futuristic sales, powered by AI
+          © {new Date().getFullYear()} leads2opp · Built with 💡 and ☕️
         </Typography>
       </Box>
     </Box>
