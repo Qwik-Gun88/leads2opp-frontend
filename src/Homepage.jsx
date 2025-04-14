@@ -15,8 +15,8 @@ const Homepage = () => {
       <AppBar position="static" sx={{ backgroundColor: '#0b0f1a', boxShadow: 'none', borderBottom: '1px solid #1e2a38' }}>
         <Toolbar sx={{ justifyContent: 'space-between' }}>
           <Box display="flex" alignItems="center" gap={1}>
-            <img src="/assets/logo.png" alt="leads2opp logo" style={{ height: 32 }} />
-            <Typography variant="h6" sx={{ color: '#00e676', fontWeight: 'bold' }}>
+          <img src="/assets/logo.png" alt="leads2opp logo" style={{ height: 40, marginRight: 12 }} />
+          <Typography variant="h6" sx={{ color: '#00e676', fontWeight: 'bold' }}>
               leads<span style={{ color: '#fff' }}>2opp</span>
             </Typography>
           </Box>
