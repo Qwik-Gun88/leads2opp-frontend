@@ -1,80 +1,85 @@
+// src/Homepage.jsx
 import React from 'react';
-import { Box, Button, Container, Typography, Grid, Paper } from '@mui/material';
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Box,
+  Button,
+  Container,
+  Grid,
+  Paper,
+} from '@mui/material';
+import CloudIcon from '@mui/icons-material/Cloud';
+import TrackChangesIcon from '@mui/icons-material/TrackChanges';
+import DiamondIcon from '@mui/icons-material/Diamond';
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import { useNavigate } from 'react-router-dom';
-import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
-import InsightsIcon from '@mui/icons-material/Insights';
-import GroupsIcon from '@mui/icons-material/Groups';
 
 const Homepage = () => {
   const navigate = useNavigate();
 
   return (
-    <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      {/* Hero Section */}
-      <Box
-        sx={{
-          background: 'linear-gradient(135deg, #001e3c, #004e92)',
-          color: 'white',
-          py: 10,
-          textAlign: 'center',
-        }}
-      >
-        <Container>
-          <Typography variant="h2" fontWeight={700} gutterBottom>
-            Welcome to <span style={{ color: '#00e676' }}>leads2opp</span>
+    <Box sx={{ minHeight: '100vh', backgroundColor: '#020b1c', color: '#fff' }}>
+      {/* Top Nav */}
+      <AppBar position="static" sx={{ background: 'transparent', boxShadow: 'none', pt: 2 }}>
+        <Toolbar sx={{ justifyContent: 'space-between', px: 4 }}>
+          <Typography variant="h6" sx={{ fontWeight: 700 }}>
+            <span style={{ color: '#00e676' }}>leads</span>2opp
           </Typography>
-          <Typography variant="h5" color="#cfd8dc" gutterBottom>
-            Igniting connections. Fueling pipeline. Built for sales teams.
-          </Typography>
-          <Button
-            variant="contained"
-            color="success"
-            size="large"
-            sx={{ mt: 4, px: 5, py: 1.5, fontWeight: 'bold', borderRadius: 3 }}
-            onClick={() => navigate('/app')}
-          >
-            🚀 Launch Demo
-          </Button>
-        </Container>
+          <Box sx={{ display: 'flex', gap: 4 }}>
+            <Typography variant="body1">About</Typography>
+            <Typography variant="body1">Features</Typography>
+            <Typography variant="body1">Pricing</Typography>
+            <Typography variant="body1">Contact</Typography>
+          </Box>
+        </Toolbar>
+      </AppBar>
+
+      {/* Hero */}
+      <Box sx={{ py: 10, textAlign: 'center' }}>
+        <CloudIcon sx={{ fontSize: 100, color: '#00e676' }} />
+        <Typography variant="h3" fontWeight={700} mt={4}>
+          Innovative Sales <br /> Engagement Platform
+        </Typography>
+        <Button
+          variant="contained"
+          size="large"
+          sx={{ mt: 5, backgroundColor: '#2979ff', borderRadius: 3, fontWeight: 'bold' }}
+          onClick={() => navigate('/app')}
+        >
+          Request a Demo
+        </Button>
       </Box>
 
-      {/* Features Grid */}
-      <Box sx={{ backgroundColor: 'white', color: '#0a1929', py: 10 }}>
+      {/* 3-Column Section */}
+      <Box sx={{ py: 10, background: 'radial-gradient(circle, #0f2027, #203a43)' }}>
         <Container>
-          <Typography variant="h4" align="center" fontWeight={600} gutterBottom>
-            Why teams choose leads2opp
-          </Typography>
-          <Grid container spacing={4} justifyContent="center" mt={4}>
+          <Grid container spacing={4} justifyContent="center">
             <Grid item xs={12} sm={6} md={4}>
-              <Paper elevation={2} sx={{ p: 4, textAlign: 'center', borderRadius: 3 }}>
-                <RocketLaunchIcon sx={{ fontSize: 50, color: '#1976d2' }} />
-                <Typography variant="h6" fontWeight={600} mt={2}>
-                  Smart Automation
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Auto-dialing, sequences, and multi-step cadence workflows.
+              <Paper sx={{ p: 4, textAlign: 'center', borderRadius: 3 }} elevation={4}>
+                <TrackChangesIcon sx={{ fontSize: 40, color: '#2979ff' }} />
+                <Typography variant="h6" fontWeight={600} mt={2}>Our Mission</Typography>
+                <Typography variant="body2" mt={1}>
+                  Our mission is provide innovative solutions to transform sales opportunities and drive customer success.
                 </Typography>
               </Paper>
             </Grid>
             <Grid item xs={12} sm={6} md={4}>
-              <Paper elevation={2} sx={{ p: 4, textAlign: 'center', borderRadius: 3 }}>
-                <InsightsIcon sx={{ fontSize: 50, color: '#1976d2' }} />
-                <Typography variant="h6" fontWeight={600} mt={2}>
-                  Insights That Matter
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Track calls, emails, and performance trends with clarity.
+              <Paper sx={{ p: 4, textAlign: 'center', borderRadius: 3 }} elevation={4}>
+                <DiamondIcon sx={{ fontSize: 40, color: '#2979ff' }} />
+                <Typography variant="h6" fontWeight={600} mt={2}>Core Values</Typography>
+                <Typography variant="body2" mt={1}>
+                  Integrity, innovation and customer-centricity are at the heart of everything we do.
                 </Typography>
               </Paper>
             </Grid>
             <Grid item xs={12} sm={6} md={4}>
-              <Paper elevation={2} sx={{ p: 4, textAlign: 'center', borderRadius: 3 }}>
-                <GroupsIcon sx={{ fontSize: 50, color: '#1976d2' }} />
-                <Typography variant="h6" fontWeight={600} mt={2}>
-                  Built for Teams
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Sync CRM, collaborate on tasks, and close faster together.
+              <Paper sx={{ p: 4, textAlign: 'center', borderRadius: 3 }} elevation={4}>
+                <LightbulbIcon sx={{ fontSize: 40, color: '#2979ff' }} />
+                <Typography variant="h6" fontWeight={600} mt={2}>Why leads2opp?</Typography>
+                <Typography variant="body2" mt={1}>
+                  We offer cutting-edge tools powered by AI and machine learning to enhance your sales strategy.
                 </Typography>
               </Paper>
             </Grid>
@@ -82,31 +87,10 @@ const Homepage = () => {
         </Container>
       </Box>
 
-      {/* Call to Action */}
-      <Box sx={{ background: '#0a1929', color: 'white', py: 8, textAlign: 'center' }}>
-        <Container>
-          <Typography variant="h5" fontWeight={600} gutterBottom>
-            Ready to turn leads into opportunities?
-          </Typography>
-          <Typography variant="body1" color="#cfd8dc">
-            Start engaging smarter, faster, and with more intent.
-          </Typography>
-          <Button
-            variant="contained"
-            color="success"
-            size="large"
-            sx={{ mt: 4, px: 5, py: 1.5, fontWeight: 'bold', borderRadius: 3 }}
-            onClick={() => navigate('/app')}
-          >
-            👉 Launch Demo
-          </Button>
-        </Container>
-      </Box>
-
       {/* Footer */}
-      <Box sx={{ backgroundColor: '#001e3c', color: '#cfd8dc', py: 4, textAlign: 'center' }}>
+      <Box sx={{ textAlign: 'center', py: 4, backgroundColor: '#000814', color: '#cfd8dc' }}>
         <Typography variant="body2">
-          © {new Date().getFullYear()} leads2opp · Built with 💡 and ☕️
+          © {new Date().getFullYear()} leads2opp · Powered by ☁️ + ⚡
         </Typography>
       </Box>
     </Box>
