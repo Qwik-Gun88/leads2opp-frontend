@@ -25,14 +25,15 @@ const InnerApp = () => {
   <Route path="/analytics-reporting" element={<AnalyticsReporting />} />
   <Route path="/contacts-manager" element={<ContactsManager />} />
   <Route path="/design-sequence" element={<DesignSequence />} />
+  <Route path="/app" element={<DashboardLayout />} />
 </Routes>
   );
 };
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <InnerApp />
-    </BrowserRouter>
+    <BrowserRouter basename="/">
+    <InnerApp />
+  </BrowserRouter>  
   );
 }
