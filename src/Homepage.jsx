@@ -11,23 +11,22 @@ const Homepage = () => {
       <AppBar position="static" sx={{ background: 'transparent', boxShadow: 'none', py: 2 }}>
         <Toolbar sx={{ justifyContent: 'space-between', px: 4 }}>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <img src="/assets/logo.png" alt="leads2opp logo" style={{ height: 40, marginRight: 12 }} />
-            <Typography variant="h6" sx={{ fontWeight: 700, color: '#00e676' }}>
+            <img src="/assets/logo.png" alt="leads2opp logo" style={{ height: 36, marginRight: 10 }} />
+            <Typography variant="h6" fontWeight={700} color="#00e676">
               leads<span style={{ color: '#fff' }}>2opp</span>
             </Typography>
           </Box>
           <Box sx={{ display: 'flex', gap: 4 }}>
-            <Button sx={{ color: '#cfd8dc' }}>About</Button>
-            <Button sx={{ color: '#cfd8dc' }}>Features</Button>
-            <Button sx={{ color: '#cfd8dc' }}>Pricing</Button>
-            <Button sx={{ color: '#cfd8dc' }}>Contact</Button>
+            {['About', 'Features', 'Pricing', 'Contact'].map((text) => (
+              <Button key={text} sx={{ color: '#cfd8dc', fontWeight: 500 }}>{text}</Button>
+            ))}
           </Box>
         </Toolbar>
       </AppBar>
 
       {/* Hero Section */}
       <Container sx={{ py: 12, textAlign: 'center' }}>
-        <img src="/assets/logo.png" alt="Cloud Glow" style={{ height: 90, marginBottom: 20 }} />
+        <img src="/assets/logo.png" alt="Cloud Glow" style={{ height: 90, marginBottom: 24 }} />
         <Typography variant="h3" fontWeight={700} gutterBottom>
           Innovative Sales <br /> Engagement Platform
         </Typography>
@@ -48,9 +47,15 @@ const Homepage = () => {
         </Button>
       </Container>
 
-      {/* Feature Section */}
+      {/* Features Section */}
       <Box sx={{ background: 'linear-gradient(180deg, #0b0f19, #121e2e)', py: 10 }}>
-        <Container sx={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap', gap: 4 }}>
+        <Container sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          flexWrap: 'wrap',
+          gap: 4,
+          alignItems: 'stretch'
+        }}>
           {[
             {
               title: 'Our Mission',
@@ -75,9 +80,14 @@ const Homepage = () => {
                 color: '#0a1929',
                 borderRadius: 3,
                 maxWidth: 300,
+                minHeight: 220,
                 p: 4,
                 textAlign: 'center',
-                boxShadow: 4
+                boxShadow: 6,
+                transition: 'transform 0.3s ease',
+                '&:hover': {
+                  transform: 'translateY(-5px)',
+                }
               }}
             >
               <Typography variant="h4" mb={2}>{icon}</Typography>
