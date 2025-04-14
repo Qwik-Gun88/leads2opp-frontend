@@ -1,34 +1,39 @@
 import React from 'react';
-import { AppBar, Toolbar, Box, Button, Container, Typography } from '@mui/material';
+import {
+  AppBar, Box, Toolbar, Typography, Button, Container,
+  Grid, Card, CardContent, IconButton
+} from '@mui/material';
+import CloudIcon from '@mui/icons-material/Cloud';
 import { useNavigate } from 'react-router-dom';
 
 const Homepage = () => {
   const navigate = useNavigate();
 
   return (
-    <Box sx={{ minHeight: '100vh', background: '#0b0f19', color: 'white', fontFamily: 'Inter, sans-serif' }}>
-      {/* App Bar */}
-      <AppBar position="static" sx={{ background: 'transparent', boxShadow: 'none', py: 2 }}>
-        <Toolbar sx={{ justifyContent: 'space-between', px: 4 }}>
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <img src="/assets/logo.png" alt="leads2opp logo" style={{ height: 36, marginRight: 10 }} />
-            <Typography variant="h6" fontWeight={700} color="#00e676">
+    <Box sx={{ minHeight: '100vh', backgroundColor: '#0b0f1a', color: '#fff' }}>
+      {/* AppBar */}
+      <AppBar position="static" sx={{ backgroundColor: '#0b0f1a', boxShadow: 'none', borderBottom: '1px solid #1e2a38' }}>
+        <Toolbar sx={{ justifyContent: 'space-between' }}>
+          <Box display="flex" alignItems="center" gap={1}>
+            <img src="/assets/logo.png" alt="leads2opp logo" style={{ height: 32 }} />
+            <Typography variant="h6" sx={{ color: '#00e676', fontWeight: 'bold' }}>
               leads<span style={{ color: '#fff' }}>2opp</span>
             </Typography>
           </Box>
-          <Box sx={{ display: 'flex', gap: 4 }}>
-            {['About', 'Features', 'Pricing', 'Contact'].map((text) => (
-              <Button key={text} sx={{ color: '#cfd8dc', fontWeight: 500 }}>{text}</Button>
-            ))}
+          <Box display="flex" gap={3}>
+            <Button sx={{ color: '#cfd8dc' }}>About</Button>
+            <Button sx={{ color: '#cfd8dc' }}>Features</Button>
+            <Button sx={{ color: '#cfd8dc' }}>Pricing</Button>
+            <Button sx={{ color: '#cfd8dc' }}>Contact</Button>
           </Box>
         </Toolbar>
       </AppBar>
 
       {/* Hero Section */}
       <Container sx={{ py: 12, textAlign: 'center' }}>
-        <img src="/assets/logo.png" alt="Cloud Glow" style={{ height: 90, marginBottom: 24 }} />
+        <CloudIcon sx={{ fontSize: 64, color: '#00e676', mb: 2 }} />
         <Typography variant="h3" fontWeight={700} gutterBottom>
-          Innovative Sales <br /> Engagement Platform
+          Innovative Sales Engagement Platform
         </Typography>
         <Button
           variant="contained"
@@ -36,73 +41,76 @@ const Homepage = () => {
             mt: 4,
             px: 5,
             py: 1.5,
-            borderRadius: 2,
             fontWeight: 'bold',
-            background: '#2979ff',
-            '&:hover': { background: '#2962ff' }
+            borderRadius: 3,
+            background: 'linear-gradient(to right, #00c6ff, #0072ff)',
+            boxShadow: '0 0 20px #00c6ff',
+            '&:hover': {
+              background: 'linear-gradient(to right, #0072ff, #00c6ff)',
+              boxShadow: '0 0 25px #0072ff',
+            }
           }}
           onClick={() => navigate('/app')}
         >
-          Request a Demo
+          DEMO HERE
         </Button>
       </Container>
 
-      {/* Features Section */}
-      <Box sx={{ background: 'linear-gradient(180deg, #0b0f19, #121e2e)', py: 10 }}>
-        <Container sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          flexWrap: 'wrap',
-          gap: 4,
-          alignItems: 'stretch'
-        }}>
-          {[
-            {
-              title: 'Our Mission',
-              desc: 'We deliver AI-powered outreach tools that transform sales productivity.',
-              icon: '🎯'
-            },
-            {
-              title: 'Core Values',
-              desc: 'Innovation, transparency, and customer-first execution guide every decision.',
-              icon: '💎'
-            },
-            {
-              title: 'Why leads2opp?',
-              desc: 'Automated dialers, cadence engines, and CRM sync built into one sleek platform.',
-              icon: '🚀'
-            }
-          ].map(({ title, desc, icon }) => (
-            <Box
-              key={title}
-              sx={{
-                background: '#fff',
-                color: '#0a1929',
-                borderRadius: 3,
-                maxWidth: 300,
-                minHeight: 220,
-                p: 4,
-                textAlign: 'center',
-                boxShadow: 6,
-                transition: 'transform 0.3s ease',
-                '&:hover': {
-                  transform: 'translateY(-5px)',
-                }
-              }}
-            >
-              <Typography variant="h4" mb={2}>{icon}</Typography>
-              <Typography variant="h6" fontWeight={700} mb={1}>{title}</Typography>
-              <Typography variant="body2" color="text.secondary">{desc}</Typography>
-            </Box>
-          ))}
+      {/* Feature Cards */}
+      <Box sx={{ background: 'linear-gradient(to bottom, #0b0f1a, #1c2531)', py: 10 }}>
+        <Container>
+          <Grid container spacing={4} justifyContent="center">
+            {[
+              {
+                title: 'Our Mission',
+                text: 'We provide innovative solutions to transform sales opportunities and drive customer success.',
+                icon: '🎯',
+              },
+              {
+                title: 'Core Values',
+                text: 'Integrity, innovation, and customer-centricity are at the heart of everything we do.',
+                icon: '💎',
+              },
+              {
+                title: 'Why leads2opp?',
+                text: 'We offer cutting-edge tools powered by AI and machine learning to enhance your sales strategy.',
+                icon: '💡',
+              },
+            ].map((card, index) => (
+              <Grid item xs={12} md={4} key={index}>
+                <Card
+                  sx={{
+                    borderRadius: 4,
+                    textAlign: 'center',
+                    background: '#121e2c',
+                    color: '#fff',
+                    boxShadow: '0px 0px 20px #0ff',
+                    transition: 'transform 0.3s ease',
+                    '&:hover': {
+                      transform: 'translateY(-8px)',
+                      boxShadow: '0px 0px 30px #00e676',
+                    },
+                  }}
+                >
+                  <CardContent>
+                    <Typography variant="h3" mb={1}>{card.icon}</Typography>
+                    <Typography variant="h6" fontWeight="bold" gutterBottom>
+                      {card.title}
+                    </Typography>
+                    <Typography variant="body2" color="#cfd8dc">
+                      {card.text}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
         </Container>
       </Box>
 
       {/* Footer */}
-      <Box sx={{ backgroundColor: '#0b0f19', color: '#cfd8dc', py: 6, textAlign: 'center' }}>
-        <Typography variant="body2">
-          © {new Date().getFullYear()} leads2opp · Built with 💡 and ☕️
-        </Typography>
+      <Box sx={{ textAlign: 'center', py: 4, backgroundColor: '#0b0f1a', color: '#90a4ae' }}>
+        © {new Date().getFullYear()} leads2opp · Built with 💡 and ☕️
       </Box>
     </Box>
   );
