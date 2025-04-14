@@ -1,3 +1,4 @@
+import Homepage from './Homepage';
 import React from 'react';
 import { Routes, Route, BrowserRouter, useNavigate } from 'react-router-dom';
 import DashboardLayout from './DashboardLayout';
@@ -19,12 +20,12 @@ const InnerApp = () => {
 
   return (
     <Routes>
-      <Route path="/" element={<DashboardLayout navigate={navigate} />} />
-      <Route path="/contacts-centre" element={<ContactsCentre />} />
-      <Route path="/contacts-manager" element={<ContactsManager />} />
-      <Route path="/analytics-reporting" element={<AnalyticsReporting />} />
-      <Route path="/design-sequence" element={<DesignSequence />} />
-    </Routes>
+  <Route path="/" element={<Homepage />} />
+  <Route path="/contacts-centre" element={<ContactsCentre />} />
+  <Route path="/analytics-reporting" element={<AnalyticsReporting />} />
+  <Route path="/contacts-manager" element={<ContactsManager />} />
+  <Route path="/design-sequence" element={<DesignSequence />} />
+</Routes>
   );
 };
 

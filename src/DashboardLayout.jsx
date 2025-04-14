@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Box,
   Grid,
@@ -23,6 +23,27 @@ import { useNavigate } from 'react-router-dom';
 const DashboardLayout = () => {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    document.title = 'Dashboard | leads2opp';
+  }, []);
+
+  const blockStyle = {
+    height: 200,
+    p: 3,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+    borderRadius: 3,
+    cursor: 'pointer',
+    transition: 'all 0.3s ease',
+    '&:hover': {
+      transform: 'translateY(-5px)',
+      boxShadow: 6,
+    },
+  };
+
   return (
     <Box sx={{ minHeight: '100vh', backgroundColor: '#f4f6f8' }}>
       <AppBar position="static" color="primary" elevation={1}>
@@ -39,29 +60,13 @@ const DashboardLayout = () => {
       </AppBar>
 
       <Box sx={{ p: 4 }}>
-        <Grid container spacing={28}>
-          {/* Contacts Centre Block */}
-          <Grid item sx={{ width: 320 }}>
+        <Grid container spacing={4}>
+          {/* Top 3 Dashboard Blocks */}
+          <Grid item xs={12} md={4}>
             <Paper
               elevation={3}
               onClick={() => navigate('/contacts-centre')}
-              sx={{
-                width: '150%',
-                height: 200,
-                p: 3,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                textAlign: 'center',
-                borderRadius: 3,
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                '&:hover': {
-                  transform: 'translateY(-5px)',
-                  boxShadow: 6,
-                },
-              }}
+              sx={blockStyle}
             >
               <PeopleAltIcon sx={{ fontSize: 60, color: '#1976d2' }} />
               <Typography variant="h6" sx={{ mt: 2 }}>Contacts Centre</Typography>
@@ -71,28 +76,11 @@ const DashboardLayout = () => {
             </Paper>
           </Grid>
 
-          {/* Analytics & Reporting Block */}
-          <Grid item sx={{ width: 320 }}>
+          <Grid item xs={12} md={4}>
             <Paper
               elevation={3}
               onClick={() => navigate('/analytics-reporting')}
-              sx={{
-                width: '150%',
-                height: 200,
-                p: 3,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                textAlign: 'center',
-                borderRadius: 3,
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                '&:hover': {
-                  transform: 'translateY(-5px)',
-                  boxShadow: 6,
-                },
-              }}
+              sx={blockStyle}
             >
               <BarChartIcon sx={{ fontSize: 60, color: '#1976d2' }} />
               <Typography variant="h6" sx={{ mt: 2 }}>Analytics & Reporting</Typography>
@@ -102,28 +90,11 @@ const DashboardLayout = () => {
             </Paper>
           </Grid>
 
-          {/* Contacts Manager Block */}
-          <Grid item sx={{ width: 320 }}>
+          <Grid item xs={12} md={4}>
             <Paper
               elevation={3}
               onClick={() => navigate('/contacts-manager')}
-              sx={{
-                width: '150%',
-                height: 200,
-                p: 3,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                textAlign: 'center',
-                borderRadius: 3,
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                '&:hover': {
-                  transform: 'translateY(-5px)',
-                  boxShadow: 6,
-                },
-              }}
+              sx={blockStyle}
             >
               <Box sx={{ display: 'flex', gap: 1, mb: 1 }}>
                 <CloudUploadIcon sx={{ fontSize: 60, color: '#1976d2' }} />
@@ -136,33 +107,30 @@ const DashboardLayout = () => {
             </Paper>
           </Grid>
 
-          {/* Updates Block */}
-          <Grid item xs={34} sx={{ mt: -18 }}>
+          {/* Full-width Updates Panel */}
+          <Grid item xs={12}>
             <Paper
               elevation={3}
               sx={{
-                width: '237%',
-                minHeight: 200,
                 borderRadius: 3,
                 p: 4,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
                 textAlign: 'center',
                 transition: 'all 0.3s ease',
               }}
             >
-              <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', mb: 2, justifyContent: 'center' }}>
                 <NotificationsIcon sx={{ fontSize: 40, color: '#1976d2', mr: 1 }} />
                 <Typography variant="h6" sx={{ fontWeight: 'bold' }}>Updates</Typography>
               </Box>
 
-              <Grid container spacing={4} justifyContent="center">
-                <Grid item xs={12} sm={6}>
-                  <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 2 }}>
-                    🗂️ Tasks
-                  </Typography>
+              <Grid container spacing={4} justifyContent="center" alignItems="flex-start" sx={{ width: '100%' }}>
+                {/* Tasks Column */}
+                <Grid item xs={12} sm={6} md={4}>
+                  <Box sx={{ textAlign: 'center', mb: 2 }}>
+                    <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
+                      🗂️ Tasks
+                    </Typography>
+                  </Box>
                   <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
                     <TaskAltIcon color="success" sx={{ mr: 1 }} />
                     <Typography variant="body2">Follow up with Alice (Product Feedback)</Typography>
@@ -173,10 +141,13 @@ const DashboardLayout = () => {
                   </Box>
                 </Grid>
 
-                <Grid item xs={12} sm={6}>
-                  <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 2 }}>
-                    📨 Emails & News
-                  </Typography>
+                {/* Emails & News Column */}
+                <Grid item xs={12} sm={6} md={4}>
+                  <Box sx={{ textAlign: 'center', mb: 2 }}>
+                    <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
+                      📨 Emails & News
+                    </Typography>
+                  </Box>
                   <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
                     <TaskAltIcon color="warning" sx={{ mr: 1 }} />
                     <Typography variant="body2">Prepare call script for Friday outreach</Typography>
