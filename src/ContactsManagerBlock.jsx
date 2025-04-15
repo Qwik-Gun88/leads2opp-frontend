@@ -30,8 +30,8 @@ const ContactsManagerBlock = () => {
       }}
     >
       <Box sx={{ display: 'flex', gap: 1, mb: 1 }}>
-        <CloudUploadIcon sx={{ fontSize: 60, color: '#1976d2' }} />
-        <CloudDownloadIcon sx={{ fontSize: 60, color: '#1976d2' }} />
+        <CloudUploadIcon sx={{ fontSize: 30, color: '#1976d2' }} />
+        <CloudDownloadIcon sx={{ fontSize: 30, color: '#1976d2' }} />
       </Box>
       <Typography variant="h6" sx={{ mt: 1 }}>Contacts Manager</Typography>
       <Typography variant="body2" color="text.secondary">

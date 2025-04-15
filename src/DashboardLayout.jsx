@@ -50,7 +50,7 @@ const DashboardLayout = () => {
     <Box sx={{ minHeight: '100vh', background: 'linear-gradient(to bottom, #0b0f19, #1c2531)', color: 'white' }}>
       <AppBar position="static" sx={{ background: '#0b0f19', boxShadow: 'none', borderBottom: '1px solid #1e2a38' }}>
         <Toolbar sx={{ justifyContent: 'space-between', px: 4 }}>
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={() => navigate('/')}> 
             <img src="/assets/logo.png" alt="leads2opp logo" style={{ height: 36, marginRight: 10 }} />
             <Typography variant="h6" color="#00e676" fontWeight={700}>
               leads<span style={{ color: '#fff' }}>2opp</span>

@@ -1,98 +1,53 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import {
-  Box,
-  Button,
-  Container,
-  Paper,
+  AppBar,
+  Toolbar,
   Typography,
-  useTheme
+  IconButton,
+  Box,
+  Container,
 } from '@mui/material';
-import UploadFileIcon from '@mui/icons-material/UploadFile';
-import DownloadIcon from '@mui/icons-material/Download';
-import SyncAltIcon from '@mui/icons-material/SyncAlt';
-import SubPageLayout from './SubPageLayout';
-import Papa from 'papaparse';
-import axios from 'axios'; // ✅ Moved here
-import ColumnMapper from './ColumnMapper';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import SettingsIcon from '@mui/icons-material/Settings';
+import { useNavigate } from 'react-router-dom';
 
 const ContactsManager = () => {
-  const theme = useTheme();
-  const [csvHeaders, setCsvHeaders] = useState([]);
-  const [csvData, setCsvData] = useState([]);
-  const [mappings, setMappings] = useState(null);
+  const navigate = useNavigate();
 
-  const handleFileUpload = (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    Papa.parse(file, {
-      header: true,
-      skipEmptyLines: true,
-      complete: function (results) {
-        const headers = results.meta.fields;
-        setCsvHeaders(headers);
-        setCsvData(results.data);
-        setMappings(null);
-      },
-    });
-  };
-
-  const handleConfirmMapping = async (selectedMapping) => {
-    console.log("🧠 Final Mapping:", selectedMapping);
-
-    const mappedContacts = csvData.map(row => {
-      const transformed = {};
-      for (const csvKey in selectedMapping) {
-        const internalField = selectedMapping[csvKey];
-        if (internalField) {
-          transformed[internalField.toLowerCase()] = row[csvKey];
-        }
-      }
-      return transformed;
-    });
-
-    console.log("📤 Sending contacts:", mappedContacts);
-
-    try {
-      await axios.post(import.meta.env.VITE_BACKEND_URL + '/api/save-contacts', mappedContacts);
-      alert("✅ Contacts uploaded and saved!");
-      setMappings(selectedMapping);
-    } catch (err) {
-      console.error("❌ Error saving contacts:", err);
-      alert("Failed to upload contacts");
-    }
-  };
+  useEffect(() => {
+    document.title = 'Contacts Manager | leads2opp';
+  }, []);
 
   return (
-    <SubPageLayout>
-      <Container maxWidth="lg" sx={{ py: 4 }}>
-        <Typography variant="h4" gutterBottom>📁 Contacts Manager</Typography>
-
-        <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 3, backgroundColor: theme.palette.background.paper }}>
-          <Typography variant="h6" gutterBottom>Upload & Download</Typography>
-          <Box sx={{ display: 'flex', gap: 2, mt: 2, flexWrap: 'wrap' }}>
-            <Button variant="contained" startIcon={<UploadFileIcon />} component="label">
-              Upload CSV
-              <input type="file" accept=".csv" hidden onChange={handleFileUpload} />
-            </Button>
-            <Button variant="outlined" startIcon={<DownloadIcon />}>Download Contacts</Button>
+    <Box sx={{ minHeight: '100vh', background: 'linear-gradient(to bottom, #0b0f19, #1c2531)', color: 'white' }}>
+      {/* AppBar */}
+      <AppBar position="static" sx={{ background: '#0b0f19', boxShadow: 'none', borderBottom: '1px solid #1e2a38' }}>
+        <Toolbar sx={{ justifyContent: 'space-between', px: 4 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={() => navigate('/')}>
+            <img src="/assets/logo.png" alt="leads2opp logo" style={{ height: 36, marginRight: 10 }} />
+            <Typography variant="h6" fontWeight={700} color="#00e676">
+              leads<span style={{ color: '#fff' }}>2opp</span>
+            </Typography>
           </Box>
-        </Paper>
-
-        {csvHeaders.length > 0 && !mappings && (
-          <ColumnMapper headers={csvHeaders} onConfirm={handleConfirmMapping} />
-        )}
-
-        <Paper elevation={3} sx={{ p: 3, borderRadius: 3, backgroundColor: theme.palette.background.paper }}>
-          <Typography variant="h6" gutterBottom>CRM Integration</Typography>
-          <Box sx={{ display: 'flex', gap: 2, mt: 2, flexWrap: 'wrap' }}>
-            <Button variant="contained" color="primary" startIcon={<SyncAltIcon />}>Sync to Salesforce</Button>
-            <Button variant="contained" color="info" startIcon={<SyncAltIcon />}>Sync to HubSpot</Button>
-            <Button variant="contained" color="success" startIcon={<SyncAltIcon />}>Sync to NetSuite</Button>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            <IconButton color="inherit"><NotificationsIcon /></IconButton>
+            <IconButton color="inherit"><SettingsIcon /></IconButton>
+            <IconButton color="inherit"><AccountCircle /></IconButton>
           </Box>
-        </Paper>
+        </Toolbar>
+      </AppBar>
+
+      {/* Content Section */}
+      <Container sx={{ py: 10 }}>
+        <Typography variant="h4" fontWeight={600} gutterBottom>
+          Contacts Manager
+        </Typography>
+        <Typography variant="body1" color="#b0bec5">
+          Upload and manage contacts, sync with your CRM.
+        </Typography>
       </Container>
-    </SubPageLayout>
+    </Box>
   );
 };
 

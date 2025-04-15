@@ -1,42 +1,51 @@
+import React, { useEffect } from 'react';
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  IconButton,
+  Box,
+  Container,
+} from '@mui/material';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import SettingsIcon from '@mui/icons-material/Settings';
 
-// AnalyticsReportingBlock.jsx
-import React from 'react';
-import { Paper, Typography } from '@mui/material';
-import BarChartIcon from '@mui/icons-material/BarChart';
-import { useNavigate } from 'react-router-dom';
-
-const AnalyticsReportingBlock = () => {
-  const navigate = useNavigate();
+const AnalyticsReporting = () => {
+  useEffect(() => {
+    document.title = 'Analytics & Reporting | leads2opp';
+  }, []);
 
   return (
-    <Paper
-  elevation={3}
-  onClick={() => navigate('/your-route')}
-  sx={{
-    width: 300, // force same width for both
-    height: 200,
-    p: 3,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    textAlign: 'center',
-    borderRadius: 3,
-    cursor: 'pointer',
-    transition: 'all 0.3s ease',
-    '&:hover': {
-      transform: 'translateY(-5px)',
-      boxShadow: 6,
-    },
-  }}
->
-      <BarChartIcon sx={{ fontSize: 60, color: '#1976d2' }} />
-      <Typography variant="h6" sx={{ mt: 2 }}>Analytics & Reporting</Typography>
-      <Typography variant="body2" color="text.secondary">
-        Call stats, email engagement, trends
-      </Typography>
-    </Paper>
+    <Box sx={{ minHeight: '100vh', background: 'linear-gradient(to bottom, #0b0f19, #1c2531)', color: 'white' }}>
+      {/* AppBar */}
+      <AppBar position="static" sx={{ background: '#0b0f19', boxShadow: 'none', borderBottom: '1px solid #1e2a38' }}>
+        <Toolbar sx={{ justifyContent: 'space-between', px: 4 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <img src="/assets/logo.png" alt="leads2opp logo" style={{ height: 36, marginRight: 10 }} />
+            <Typography variant="h6" fontWeight={700} color="#00e676">
+              leads<span style={{ color: '#fff' }}>2opp</span>
+            </Typography>
+          </Box>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            <IconButton color="inherit"><NotificationsIcon /></IconButton>
+            <IconButton color="inherit"><SettingsIcon /></IconButton>
+            <IconButton color="inherit"><AccountCircle /></IconButton>
+          </Box>
+        </Toolbar>
+      </AppBar>
+
+      {/* Content Section */}
+      <Container sx={{ py: 10 }}>
+        <Typography variant="h4" fontWeight={600} gutterBottom>
+          Analytics & Reporting
+        </Typography>
+        <Typography variant="body1" color="#b0bec5">
+          View call statistics, email engagement, and conversion insights.
+        </Typography>
+      </Container>
+    </Box>
   );
 };
 
-export default AnalyticsReportingBlock;
+export default AnalyticsReporting;

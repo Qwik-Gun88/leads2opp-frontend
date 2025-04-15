@@ -12,7 +12,7 @@ const ContactsCentreBlock = () => {
   elevation={3}
   onClick={() => navigate('/your-route')}
   sx={{
-    width: 300, // force same width for both
+    width: 300, // 
     height: 200,
     p: 3,
     display: 'flex',
