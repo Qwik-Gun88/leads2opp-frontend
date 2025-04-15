@@ -2,54 +2,69 @@ import React from 'react';
 import {
   Box,
   Container,
-  Paper,
   Typography,
+  Grid,
+  Paper,
   useTheme
 } from '@mui/material';
-import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import TimelineIcon from '@mui/icons-material/Timeline';
-import SubPageLayout from './SubPageLayout';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import EmailIcon from '@mui/icons-material/Email';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+
+const analyticsCards = [
+  {
+    icon: <BarChartIcon sx={{ fontSize: 40, color: '#64b5f6' }} />,
+    title: 'Call Activity',
+    description: 'See how many calls were placed, completed, or resulted in follow-up.',
+  },
+  {
+    icon: <EmailIcon sx={{ fontSize: 40, color: '#ba68c8' }} />,
+    title: 'Email Engagement',
+    description: 'Track email opens, replies, and click-throughs.',
+  },
+  {
+    icon: <TrendingUpIcon sx={{ fontSize: 40, color: '#81c784' }} />,
+    title: 'Buyer Intent & Trends',
+    description: 'Analyze notes and activity to uncover key interest signals.',
+  },
+];
 
 const AnalyticsReporting = () => {
   const theme = useTheme();
 
   return (
-    <SubPageLayout>
-    <Container maxWidth="lg" sx={{ py: 4 }}>
-      <Typography variant="h4" gutterBottom>📊 Analytics & Reporting</Typography>
+    <Box sx={{ background: 'linear-gradient(to bottom, #0b0f19, #121e2e)', minHeight: '100vh', color: 'white', py: 10 }}>
+      <Container>
+        <Typography variant="h4" fontWeight={700} gutterBottom>
+          📊 Analytics & Reporting
+        </Typography>
 
-      <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 3, backgroundColor: theme.palette.background.paper }}>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          <PhoneInTalkIcon color="primary" />
-          <Typography variant="h6">Call Activity</Typography>
-        </Box>
-        <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-          See how many calls were placed, completed, or resulted in follow-up.
-        </Typography>
-      </Paper>
-
-      <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 3, backgroundColor: theme.palette.background.paper }}>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          <MailOutlineIcon color="secondary" />
-          <Typography variant="h6">Email Engagement</Typography>
-        </Box>
-        <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-          Track email opens, replies, and click-throughs.
-        </Typography>
-      </Paper>
-{/* force-save */}
-      <Paper elevation={3} sx={{ p: 3, borderRadius: 3, backgroundColor: theme.palette.background.paper }}>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          <TimelineIcon color="success" />
-          <Typography variant="h6">Buyer Intent & Trends</Typography>
-        </Box>
-        <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-          Analyze notes and activity to uncover key interest signals.
-        </Typography>
-      </Paper>
-    </Container>
-    </SubPageLayout>
+        <Grid container spacing={4} mt={4}>
+          {analyticsCards.map((card, index) => (
+            <Grid item xs={12} md={6} lg={4} key={index}>
+              <Paper
+                elevation={6}
+                sx={{
+                  p: 4,
+                  backgroundColor: '#1c2a38',
+                  color: 'white',
+                  borderRadius: 3,
+                  minHeight: 150,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  gap: 2,
+                }}
+              >
+                {card.icon}
+                <Typography variant="h6" fontWeight={600}>{card.title}</Typography>
+                <Typography variant="body2" color="#cfd8dc">{card.description}</Typography>
+              </Paper>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </Box>
   );
 };
 
