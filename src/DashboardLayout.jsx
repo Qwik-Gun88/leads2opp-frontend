@@ -91,10 +91,11 @@ const DashboardLayout = () => {
           {/* Contacts Manager Block */}
           <Grid item xs={12} md={4}>
             <Paper elevation={6} onClick={() => navigate('/contacts-manager')} sx={blockStyle}>
-              <Box sx={{ display: 'flex', gap: 1, mb: 1 }}>
-                <CloudUploadIcon sx={{ fontSize: 40, color: '#00e676' }} />
-                <CloudDownloadIcon sx={{ fontSize: 40, color: '#00e676' }} />
-              </Box>
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', mb: 1, gap: 1 }}>
+  <CloudUploadIcon sx={{ fontSize: 48, color: '#00e676' }} />
+  <CloudDownloadIcon sx={{ fontSize: 48, color: '#00e676' }} />
+</Box>
+
               <Typography variant="h6">Contacts Manager</Typography>
               <Typography variant="body2" color="#b0bec5">
                 Upload/download contacts, CRM sync
