@@ -109,7 +109,7 @@ const DashboardLayout = () => {
       🔔 Updates & Tasks
     </Typography>
 
-    <Box display="flex" flexDirection={{ xs: 'column', md: 'row' }} gap={6}>
+    <Box display="flex" flexDirection={{ xs: 'column', md: 'row' }} gap={12}>
       {/* Tasks Column */}
       <Box flex={1}>
         <Typography variant="subtitle1" fontWeight={600} mb={2} sx={{ display: 'flex', alignItems: 'center' }}>
