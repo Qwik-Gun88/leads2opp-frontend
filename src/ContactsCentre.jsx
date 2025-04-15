@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Container,
@@ -34,7 +34,9 @@ const mockContacts = [
 const filterFields = ["name", "company", "title", "city"];
 
 const ContactsCentre = () => {
-  console.log("Deploying multi-filter Contacts Centre — V2");
+  useEffect(() => {
+    console.log("🔥 Force deploy Contacts Centre with filters V3");
+  }, []);  
   const [contacts] = useState(mockContacts);
   const [selectedFields, setSelectedFields] = useState(["name"]);
   const [searchTerm, setSearchTerm] = useState("");
