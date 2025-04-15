@@ -105,15 +105,14 @@ const DashboardLayout = () => {
 {/* Updates Panel */}
 <Grid item xs={12}>
   <Paper elevation={6} sx={{ ...blockStyle, p: 4 }}>
-    <Box mb={3}>
-      <Typography variant="h6" fontWeight={700}>
-        🔔 Updates & Tasks
-      </Typography>
-    </Box>
-    <Grid container spacing={4}>
+    <Typography variant="h6" fontWeight={700} mb={4}>
+      🔔 Updates & Tasks
+    </Typography>
+
+    <Box display="flex" flexDirection={{ xs: 'column', md: 'row' }} gap={6}>
       {/* Tasks Column */}
-      <Grid item xs={12} md={6}>
-        <Typography variant="subtitle1" fontWeight={600} sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+      <Box flex={1}>
+        <Typography variant="subtitle1" fontWeight={600} mb={2} sx={{ display: 'flex', alignItems: 'center' }}>
           <TaskAltIcon sx={{ fontSize: 20, mr: 1, color: '#90caf9' }} />
           Tasks
         </Typography>
@@ -125,11 +124,11 @@ const DashboardLayout = () => {
           <EmailIcon sx={{ fontSize: 16, mr: 1 }} />
           Email summary sent to Globex Corp.
         </Typography>
-      </Grid>
+      </Box>
 
       {/* Emails & News Column */}
-      <Grid item xs={12} md={6}>
-        <Typography variant="subtitle1" fontWeight={600} sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+      <Box flex={1}>
+        <Typography variant="subtitle1" fontWeight={600} mb={2} sx={{ display: 'flex', alignItems: 'center' }}>
           <EmailIcon sx={{ fontSize: 20, mr: 1, color: '#90caf9' }} />
           Emails & News
         </Typography>
@@ -141,10 +140,11 @@ const DashboardLayout = () => {
           <InfoIcon sx={{ fontSize: 16, mr: 1 }} />
           New lead from LinkedIn engagement
         </Typography>
-      </Grid>
-    </Grid>
+      </Box>
+    </Box>
   </Paper>
 </Grid>
+
         </Grid>
       </Box>
     </Box>
