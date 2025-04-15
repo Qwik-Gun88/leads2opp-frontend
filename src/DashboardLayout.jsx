@@ -102,27 +102,41 @@ const DashboardLayout = () => {
   </Paper>
 </Grid>
 
+{/* Updates Panel */}
+<Grid item xs={12}>
+  <Paper elevation={6} sx={{ ...blockStyle, textAlign: 'left', p: 4 }}>
+    <Typography variant="h6" fontWeight={700} mb={3}>
+      🔔 Updates & Tasks
+    </Typography>
+    <Grid container spacing={4}>
+      <Grid item xs={12} sm={6}>
+        <Box display="flex" alignItems="center" mb={2}>
+          <TaskAltIcon sx={{ fontSize: 20, color: '#90caf9', mr: 1 }} />
+          <Typography variant="subtitle1" fontWeight={600}>Tasks</Typography>
+        </Box>
+        <Typography variant="body2" mb={1}>
+          <TaskAltIcon sx={{ fontSize: 16, mr: 1 }} /> Follow up with Alice (Product Feedback)
+        </Typography>
+        <Typography variant="body2">
+          <EmailIcon sx={{ fontSize: 16, mr: 1 }} /> Email summary sent to Globex Corp.
+        </Typography>
+      </Grid>
+      <Grid item xs={12} sm={6}>
+        <Box display="flex" alignItems="center" mb={2}>
+          <EmailIcon sx={{ fontSize: 20, color: '#90caf9', mr: 1 }} />
+          <Typography variant="subtitle1" fontWeight={600}>Emails & News</Typography>
+        </Box>
+        <Typography variant="body2" mb={1}>
+          <TaskAltIcon sx={{ fontSize: 16, mr: 1 }} /> Prepare call script for Friday outreach
+        </Typography>
+        <Typography variant="body2">
+          <InfoIcon sx={{ fontSize: 16, mr: 1 }} /> New lead from LinkedIn engagement
+        </Typography>
+      </Grid>
+    </Grid>
+  </Paper>
+</Grid>
 
-          {/* Updates Panel */}
-          <Grid item xs={12}>
-            <Paper elevation={6} sx={{ ...blockStyle, textAlign: 'left', p: 4 }}>
-              <Typography variant="h6" fontWeight={700} mb={2}>
-                🔔 Updates & Tasks
-              </Typography>
-              <Grid container spacing={4}>
-                <Grid item xs={12} sm={6}>
-                  <Typography fontWeight={600} mb={1}>🗂️ Tasks</Typography>
-                  <Typography variant="body2" mb={1}><TaskAltIcon sx={{ fontSize: 16, mr: 1 }} /> Follow up with Alice (Product Feedback)</Typography>
-                  <Typography variant="body2"><EmailIcon sx={{ fontSize: 16, mr: 1 }} /> Email summary sent to Globex Corp.</Typography>
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <Typography fontWeight={600} mb={1}>📨 Emails & News</Typography>
-                  <Typography variant="body2" mb={1}><TaskAltIcon sx={{ fontSize: 16, mr: 1 }} /> Prepare call script for Friday outreach</Typography>
-                  <Typography variant="body2"><InfoIcon sx={{ fontSize: 16, mr: 1 }} /> New lead from LinkedIn engagement</Typography>
-                </Grid>
-              </Grid>
-            </Paper>
-          </Grid>
         </Grid>
       </Box>
     </Box>
