@@ -19,7 +19,8 @@ import {
   OutlinedInput,
   Checkbox,
   ListItemText,
-  Drawer
+  Drawer,
+  Button
 } from '@mui/material';
 import { Email, Phone, Info } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
@@ -37,6 +38,7 @@ const ContactsCentre = () => {
   const [selectedFields, setSelectedFields] = useState(["name"]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedContact, setSelectedContact] = useState(null);
+  const [selectedIds, setSelectedIds] = useState([]);
   const navigate = useNavigate();
 
   const handleFieldChange = (event) => {
@@ -45,6 +47,20 @@ const ContactsCentre = () => {
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
+  };
+
+  const handleSelect = (id) => {
+    setSelectedIds((prev) =>
+      prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
+    );
+  };
+
+  const handleSelectAll = (checked) => {
+    if (checked) {
+      setSelectedIds(filteredContacts.map((c) => c.id));
+    } else {
+      setSelectedIds([]);
+    }
   };
 
   const filteredContacts = contacts.filter((contact) => {
@@ -61,7 +77,7 @@ const ContactsCentre = () => {
           Manage your call and email outreach here.
         </Typography>
 
-        <Box sx={{ display: 'flex', gap: 2, mb: 4, flexWrap: 'wrap' }}>
+        <Box sx={{ display: 'flex', gap: 2, mb: 3, flexWrap: 'wrap' }}>
           <FormControl sx={{ minWidth: 200 }}>
             <InputLabel sx={{ color: 'white' }}>Search By</InputLabel>
             <Select
@@ -88,12 +104,29 @@ const ContactsCentre = () => {
             onChange={handleSearchChange}
             sx={{ input: { color: 'white' }, minWidth: 300 }}
           />
+
+          <Button
+            variant="contained"
+            color="success"
+            disabled={selectedIds.length === 0}
+            sx={{ height: 56 }}
+            onClick={() => alert(`Assigning ${selectedIds.length} contact(s) to a sequence`)}
+          >
+            Assign to Sequence
+          </Button>
         </Box>
 
         <TableContainer component={Paper} sx={{ backgroundColor: '#1c2a38' }}>
           <Table>
             <TableHead>
               <TableRow>
+                <TableCell padding="checkbox">
+                  <Checkbox
+                    checked={selectedIds.length === filteredContacts.length && filteredContacts.length > 0}
+                    onChange={(e) => handleSelectAll(e.target.checked)}
+                    sx={{ color: '#00e676' }}
+                  />
+                </TableCell>
                 <TableCell sx={{ color: '#90caf9' }}>Name</TableCell>
                 <TableCell sx={{ color: '#90caf9' }}>Company</TableCell>
                 <TableCell sx={{ color: '#90caf9' }}>Title</TableCell>
@@ -104,6 +137,13 @@ const ContactsCentre = () => {
             <TableBody>
               {filteredContacts.map((contact) => (
                 <TableRow key={contact.id} hover>
+                  <TableCell padding="checkbox">
+                    <Checkbox
+                      checked={selectedIds.includes(contact.id)}
+                      onChange={() => handleSelect(contact.id)}
+                      sx={{ color: '#00e676' }}
+                    />
+                  </TableCell>
                   <TableCell sx={{ color: 'white' }}>{contact.name}</TableCell>
                   <TableCell sx={{ color: 'white' }}>{contact.company}</TableCell>
                   <TableCell sx={{ color: 'white' }}>{contact.title}</TableCell>
