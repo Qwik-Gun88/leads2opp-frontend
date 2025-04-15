@@ -104,39 +104,47 @@ const DashboardLayout = () => {
 
 {/* Updates Panel */}
 <Grid item xs={12}>
-  <Paper elevation={6} sx={{ ...blockStyle, textAlign: 'left', p: 4 }}>
-    <Typography variant="h6" fontWeight={700} mb={3}>
-      🔔 Updates & Tasks
-    </Typography>
+  <Paper elevation={6} sx={{ ...blockStyle, p: 4 }}>
+    <Box mb={3}>
+      <Typography variant="h6" fontWeight={700}>
+        🔔 Updates & Tasks
+      </Typography>
+    </Box>
     <Grid container spacing={4}>
-      <Grid item xs={12} sm={6}>
-        <Box display="flex" alignItems="center" mb={2}>
-          <TaskAltIcon sx={{ fontSize: 20, color: '#90caf9', mr: 1 }} />
-          <Typography variant="subtitle1" fontWeight={600}>Tasks</Typography>
-        </Box>
-        <Typography variant="body2" mb={1}>
-          <TaskAltIcon sx={{ fontSize: 16, mr: 1 }} /> Follow up with Alice (Product Feedback)
+      {/* Tasks Column */}
+      <Grid item xs={12} md={6}>
+        <Typography variant="subtitle1" fontWeight={600} sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+          <TaskAltIcon sx={{ fontSize: 20, mr: 1, color: '#90caf9' }} />
+          Tasks
         </Typography>
-        <Typography variant="body2">
-          <EmailIcon sx={{ fontSize: 16, mr: 1 }} /> Email summary sent to Globex Corp.
+        <Typography variant="body2" mb={1} sx={{ display: 'flex', alignItems: 'center' }}>
+          <TaskAltIcon sx={{ fontSize: 16, mr: 1 }} />
+          Follow up with Alice (Product Feedback)
+        </Typography>
+        <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center' }}>
+          <EmailIcon sx={{ fontSize: 16, mr: 1 }} />
+          Email summary sent to Globex Corp.
         </Typography>
       </Grid>
-      <Grid item xs={12} sm={6}>
-        <Box display="flex" alignItems="center" mb={2}>
-          <EmailIcon sx={{ fontSize: 20, color: '#90caf9', mr: 1 }} />
-          <Typography variant="subtitle1" fontWeight={600}>Emails & News</Typography>
-        </Box>
-        <Typography variant="body2" mb={1}>
-          <TaskAltIcon sx={{ fontSize: 16, mr: 1 }} /> Prepare call script for Friday outreach
+
+      {/* Emails & News Column */}
+      <Grid item xs={12} md={6}>
+        <Typography variant="subtitle1" fontWeight={600} sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+          <EmailIcon sx={{ fontSize: 20, mr: 1, color: '#90caf9' }} />
+          Emails & News
         </Typography>
-        <Typography variant="body2">
-          <InfoIcon sx={{ fontSize: 16, mr: 1 }} /> New lead from LinkedIn engagement
+        <Typography variant="body2" mb={1} sx={{ display: 'flex', alignItems: 'center' }}>
+          <TaskAltIcon sx={{ fontSize: 16, mr: 1 }} />
+          Prepare call script for Friday outreach
+        </Typography>
+        <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center' }}>
+          <InfoIcon sx={{ fontSize: 16, mr: 1 }} />
+          New lead from LinkedIn engagement
         </Typography>
       </Grid>
     </Grid>
   </Paper>
 </Grid>
-
         </Grid>
       </Box>
     </Box>
