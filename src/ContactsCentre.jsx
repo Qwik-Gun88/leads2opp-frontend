@@ -34,7 +34,7 @@ const mockContacts = [
 const filterFields = ["name", "company", "title", "city"];
 
 const ContactsCentre = () => {
-  console.log("Deploying multi-filter version of Contacts Centre");
+  console.log("Deploying multi-filter Contacts Centre — V2");
   const [contacts] = useState(mockContacts);
   const [selectedFields, setSelectedFields] = useState(["name"]);
   const [searchTerm, setSearchTerm] = useState("");
