@@ -24,6 +24,33 @@ import {
 } from '@mui/material';
 import { Email, Phone, Info } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import SettingsIcon from '@mui/icons-material/Settings';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import { useNavigate } from 'react-router-dom';
+
+const navigate = useNavigate();
+
+<AppBar position="static" sx={{ background: '#0b0f19', boxShadow: 'none', borderBottom: '1px solid #1e2a38' }}>
+  <Toolbar sx={{ justifyContent: 'space-between', px: 4 }}>
+    <Box sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={() => navigate('/')}>
+      <img src="/assets/logo.png" alt="leads2opp logo" style={{ height: 36, marginRight: 10 }} />
+      <Typography variant="h6" color="#00e676" fontWeight={700}>
+        leads<span style={{ color: '#fff' }}>2opp</span>
+      </Typography>
+    </Box>
+    <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+      <IconButton color="inherit"><NotificationsIcon /></IconButton>
+      <IconButton color="inherit"><SettingsIcon /></IconButton>
+      <IconButton color="inherit"><AccountCircle /></IconButton>
+    </Box>
+  </Toolbar>
+</AppBar>
+
 
 const mockContacts = [
   { id: 1, name: 'Alice Kim', company: 'TechNova', title: 'CTO', city: 'Toronto', phone: '123-456-7890', email: 'alice@technova.com' },
