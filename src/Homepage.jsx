@@ -34,7 +34,7 @@ const Homepage = () => {
       <img
   src="/assets/logo.png"
   alt="leads2opp logo"
-  style={{ height: 140, marginBottom: 24 }}
+  style={{ height: 280, marginBottom: 48 }}
 />
 
         <Typography variant="h3" fontWeight={700} gutterBottom>
