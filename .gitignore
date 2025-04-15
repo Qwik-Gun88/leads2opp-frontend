@@ -3,3 +3,4 @@ build
 dist
 .env
 path/to/that-file
+.DS_Store
