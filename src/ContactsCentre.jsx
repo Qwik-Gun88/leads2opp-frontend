@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Container,
   Typography,
-  Button,
   Paper,
   Table,
   TableBody,
@@ -17,8 +16,10 @@ import {
   InputLabel,
   FormControl,
   IconButton,
-  Drawer,
-  Checkbox
+  OutlinedInput,
+  Checkbox,
+  ListItemText,
+  Drawer
 } from '@mui/material';
 import { Email, Phone, Info } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
@@ -29,30 +30,26 @@ const mockContacts = [
   { id: 3, name: 'Riya Patel', company: 'FinSpark', title: 'Manager', city: 'Toronto', phone: '345-678-9012', email: 'riya@finspark.com' }
 ];
 
+const filterFields = ["name", "company", "title", "city"];
+
 const ContactsCentre = () => {
-  const [contacts, setContacts] = useState(mockContacts);
-  const [selectedIds, setSelectedIds] = useState([]);
-  const [cityFilter, setCityFilter] = useState('');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [searchField, setSearchField] = useState('name');
+  const [contacts] = useState(mockContacts);
+  const [selectedFields, setSelectedFields] = useState(["name"]);
+  const [searchTerm, setSearchTerm] = useState("");
   const [selectedContact, setSelectedContact] = useState(null);
   const navigate = useNavigate();
 
-  const handleCityChange = (e) => setCityFilter(e.target.value);
-  const handleSearch = (e) => setSearchQuery(e.target.value.toLowerCase());
-  const handleFieldChange = (e) => setSearchField(e.target.value);
-
-  const handleSelect = (id) => {
-    setSelectedIds((prev) =>
-      prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
-    );
+  const handleFieldChange = (event) => {
+    setSelectedFields(event.target.value);
   };
 
-  const filteredContacts = contacts.filter((c) => {
-    const fieldValue = c[searchField]?.toLowerCase() || '';
-    return (
-      (cityFilter === '' || c.city === cityFilter) &&
-      fieldValue.includes(searchQuery)
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const filteredContacts = contacts.filter((contact) => {
+    return selectedFields.some((field) =>
+      contact[field]?.toLowerCase().includes(searchTerm.toLowerCase())
     );
   });
 
@@ -64,60 +61,39 @@ const ContactsCentre = () => {
           Manage your call and email outreach here.
         </Typography>
 
-        <Box sx={{ display: 'flex', gap: 2, mb: 3, flexWrap: 'wrap' }}>
-          <FormControl sx={{ minWidth: 180 }}>
-            <InputLabel sx={{ color: 'white' }}>City</InputLabel>
-            <Select
-              value={cityFilter}
-              onChange={handleCityChange}
-              label="City"
-              sx={{ color: 'white' }}
-            >
-              <MenuItem value="">All Cities</MenuItem>
-              {[...new Set(contacts.map((c) => c.city))].map((city) => (
-                <MenuItem key={city} value={city}>{city}</MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-
-          <FormControl sx={{ minWidth: 150 }}>
+        <Box sx={{ display: 'flex', gap: 2, mb: 4, flexWrap: 'wrap' }}>
+          <FormControl sx={{ minWidth: 200 }}>
             <InputLabel sx={{ color: 'white' }}>Search By</InputLabel>
             <Select
-              value={searchField}
+              multiple
+              value={selectedFields}
               onChange={handleFieldChange}
-              label="Search By"
+              input={<OutlinedInput label="Search By" />}
+              renderValue={(selected) => selected.join(', ')}
               sx={{ color: 'white' }}
             >
-              <MenuItem value="name">Name</MenuItem>
-              <MenuItem value="email">Email</MenuItem>
-              <MenuItem value="company">Company</MenuItem>
-              <MenuItem value="city">City</MenuItem>
+              {filterFields.map((field) => (
+                <MenuItem key={field} value={field}>
+                  <Checkbox checked={selectedFields.indexOf(field) > -1} />
+                  <ListItemText primary={field.charAt(0).toUpperCase() + field.slice(1)} />
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
 
           <TextField
             variant="outlined"
-            label="Search"
-            onChange={handleSearch}
-            sx={{ input: { color: 'white' }, label: { color: 'white' }, '& .MuiOutlinedInput-root': { '& fieldset': { borderColor: '#90caf9' } } }}
+            placeholder="Search"
+            value={searchTerm}
+            onChange={handleSearchChange}
+            sx={{ input: { color: 'white' }, minWidth: 300 }}
           />
-
-          <Button
-            variant="contained"
-            color="success"
-            disabled={selectedIds.length === 0}
-            sx={{ ml: 'auto', height: 56 }}
-            onClick={() => alert(`Assigning ${selectedIds.length} contact(s) to a sequence`)}
-          >
-            Assign to Sequence
-          </Button>
         </Box>
 
         <TableContainer component={Paper} sx={{ backgroundColor: '#1c2a38' }}>
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell sx={{ color: '#90caf9' }}>Select</TableCell>
                 <TableCell sx={{ color: '#90caf9' }}>Name</TableCell>
                 <TableCell sx={{ color: '#90caf9' }}>Company</TableCell>
                 <TableCell sx={{ color: '#90caf9' }}>Title</TableCell>
@@ -128,13 +104,6 @@ const ContactsCentre = () => {
             <TableBody>
               {filteredContacts.map((contact) => (
                 <TableRow key={contact.id} hover>
-                  <TableCell>
-                    <Checkbox
-                      checked={selectedIds.includes(contact.id)}
-                      onChange={() => handleSelect(contact.id)}
-                      sx={{ color: '#00e676' }}
-                    />
-                  </TableCell>
                   <TableCell sx={{ color: 'white' }}>{contact.name}</TableCell>
                   <TableCell sx={{ color: 'white' }}>{contact.company}</TableCell>
                   <TableCell sx={{ color: 'white' }}>{contact.title}</TableCell>
@@ -149,24 +118,24 @@ const ContactsCentre = () => {
             </TableBody>
           </Table>
         </TableContainer>
-
-        <Drawer
-          anchor="right"
-          open={!!selectedContact}
-          onClose={() => setSelectedContact(null)}
-          PaperProps={{ sx: { backgroundColor: '#1e293b', color: 'white', width: 300, p: 3 } }}
-        >
-          {selectedContact && (
-            <Box>
-              <Typography variant="h6" gutterBottom>{selectedContact.name}</Typography>
-              <Typography variant="body2" gutterBottom>Company: {selectedContact.company}</Typography>
-              <Typography variant="body2" gutterBottom>Title: {selectedContact.title}</Typography>
-              <Typography variant="body2" gutterBottom>Email: {selectedContact.email}</Typography>
-              <Typography variant="body2">Phone: {selectedContact.phone}</Typography>
-            </Box>
-          )}
-        </Drawer>
       </Container>
+
+      <Drawer
+        anchor="right"
+        open={!!selectedContact}
+        onClose={() => setSelectedContact(null)}
+        PaperProps={{ sx: { backgroundColor: '#1e293b', color: 'white', width: 300, p: 3 } }}
+      >
+        {selectedContact && (
+          <Box>
+            <Typography variant="h6" gutterBottom>{selectedContact.name}</Typography>
+            <Typography variant="body2" gutterBottom>Company: {selectedContact.company}</Typography>
+            <Typography variant="body2" gutterBottom>Title: {selectedContact.title}</Typography>
+            <Typography variant="body2" gutterBottom>Email: {selectedContact.email}</Typography>
+            <Typography variant="body2">Phone: {selectedContact.phone}</Typography>
+          </Box>
+        )}
+      </Drawer>
     </Box>
   );
 };
