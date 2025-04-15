@@ -15,7 +15,7 @@ const Homepage = () => {
       <AppBar position="static" sx={{ backgroundColor: '#0b0f1a', boxShadow: 'none', borderBottom: '1px solid #1e2a38' }}>
         <Toolbar sx={{ justifyContent: 'space-between' }}>
           <Box display="flex" alignItems="center" gap={1}>
-          <img src="/assets/logo.png" alt="leads2opp logo" style={{ height: 40, marginRight: 12 }} />
+          <img src={`${import.meta.env.BASE_URL}assets/logo.png`} alt="leads2opp logo" style={{ height: 40, marginRight: 12 }} />
           <Typography variant="h6" sx={{ color: '#00e676', fontWeight: 'bold' }}>
               leads<span style={{ color: '#fff' }}>2opp</span>
             </Typography>
@@ -31,9 +31,14 @@ const Homepage = () => {
 
       {/* Hero Section */}
       <Container sx={{ py: 12, textAlign: 'center' }}>
-        <CloudIcon sx={{ fontSize: 64, color: '#00e676', mb: 2 }} />
+      <img
+  src="/assets/logo.png"
+  alt="leads2opp logo"
+  style={{ height: 64, marginBottom: 16 }}
+/>
+
         <Typography variant="h3" fontWeight={700} gutterBottom>
-          Innovative Sales Engagement Platform
+          Lead Gen and Sales Engagement Platform
         </Typography>
         <Button
           variant="contained"
