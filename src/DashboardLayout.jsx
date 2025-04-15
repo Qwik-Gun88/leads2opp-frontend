@@ -28,29 +28,34 @@ const DashboardLayout = () => {
   }, []);
 
   const blockStyle = {
-    height: 200,
     p: 3,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
     textAlign: 'center',
-    borderRadius: 3,
+    borderRadius: 4,
     cursor: 'pointer',
+    background: '#121e2e',
+    color: '#fff',
+    boxShadow: '0 0 15px rgba(0,255,255,0.08)',
     transition: 'all 0.3s ease',
     '&:hover': {
       transform: 'translateY(-5px)',
-      boxShadow: 6,
+      boxShadow: '0 0 25px rgba(0,255,255,0.15)',
     },
   };
 
   return (
-    <Box sx={{ minHeight: '100vh', backgroundColor: '#f4f6f8' }}>
-      <AppBar position="static" color="primary" elevation={1}>
-        <Toolbar sx={{ justifyContent: 'space-between' }}>
-          <Typography variant="h6" color="inherit" noWrap>
-            <strong style={{ color: '#fff' }}>leads2opp</strong> &nbsp;Sales Engagement Platform
-          </Typography>
+    <Box sx={{ minHeight: '100vh', background: 'linear-gradient(to bottom, #0b0f19, #1c2531)', color: 'white' }}>
+      <AppBar position="static" sx={{ background: '#0b0f19', boxShadow: 'none', borderBottom: '1px solid #1e2a38' }}>
+        <Toolbar sx={{ justifyContent: 'space-between', px: 4 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <img src="/assets/logo.png" alt="leads2opp logo" style={{ height: 36, marginRight: 10 }} />
+            <Typography variant="h6" color="#00e676" fontWeight={700}>
+              leads<span style={{ color: '#fff' }}>2opp</span>
+            </Typography>
+          </Box>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
             <IconButton color="inherit"><NotificationsIcon /></IconButton>
             <IconButton color="inherit"><SettingsIcon /></IconButton>
@@ -61,101 +66,58 @@ const DashboardLayout = () => {
 
       <Box sx={{ p: 4 }}>
         <Grid container spacing={4}>
-          {/* Top 3 Dashboard Blocks */}
+          {/* Contacts Centre Block */}
           <Grid item xs={12} md={4}>
-            <Paper
-              elevation={3}
-              onClick={() => navigate('/contacts-centre')}
-              sx={blockStyle}
-            >
-              <PeopleAltIcon sx={{ fontSize: 60, color: '#1976d2' }} />
-              <Typography variant="h6" sx={{ mt: 2 }}>Contacts Centre</Typography>
-              <Typography variant="body2" color="text.secondary">
+            <Paper elevation={6} onClick={() => navigate('/contacts-centre')} sx={blockStyle}>
+              <PeopleAltIcon sx={{ fontSize: 60, color: '#00e676' }} />
+              <Typography variant="h6" mt={2}>Contacts Centre</Typography>
+              <Typography variant="body2" color="#b0bec5">
                 Auto-dialing, bulk email, one-off outreach
               </Typography>
             </Paper>
           </Grid>
 
+          {/* Analytics Block */}
           <Grid item xs={12} md={4}>
-            <Paper
-              elevation={3}
-              onClick={() => navigate('/analytics-reporting')}
-              sx={blockStyle}
-            >
-              <BarChartIcon sx={{ fontSize: 60, color: '#1976d2' }} />
-              <Typography variant="h6" sx={{ mt: 2 }}>Analytics & Reporting</Typography>
-              <Typography variant="body2" color="text.secondary">
+            <Paper elevation={6} onClick={() => navigate('/analytics-reporting')} sx={blockStyle}>
+              <BarChartIcon sx={{ fontSize: 60, color: '#00e676' }} />
+              <Typography variant="h6" mt={2}>Analytics & Reporting</Typography>
+              <Typography variant="body2" color="#b0bec5">
                 Call stats, email engagement, trends
               </Typography>
             </Paper>
           </Grid>
 
+          {/* Contacts Manager Block */}
           <Grid item xs={12} md={4}>
-            <Paper
-              elevation={3}
-              onClick={() => navigate('/contacts-manager')}
-              sx={blockStyle}
-            >
+            <Paper elevation={6} onClick={() => navigate('/contacts-manager')} sx={blockStyle}>
               <Box sx={{ display: 'flex', gap: 1, mb: 1 }}>
-                <CloudUploadIcon sx={{ fontSize: 60, color: '#1976d2' }} />
-                <CloudDownloadIcon sx={{ fontSize: 60, color: '#1976d2' }} />
+                <CloudUploadIcon sx={{ fontSize: 40, color: '#00e676' }} />
+                <CloudDownloadIcon sx={{ fontSize: 40, color: '#00e676' }} />
               </Box>
-              <Typography variant="h6" sx={{ mt: 1 }}>Contacts Manager</Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant="h6">Contacts Manager</Typography>
+              <Typography variant="body2" color="#b0bec5">
                 Upload/download contacts, CRM sync
               </Typography>
             </Paper>
           </Grid>
 
-          {/* Full-width Updates Panel */}
+          {/* Updates Panel */}
           <Grid item xs={12}>
-            <Paper
-              elevation={3}
-              sx={{
-                borderRadius: 3,
-                p: 4,
-                textAlign: 'center',
-                transition: 'all 0.3s ease',
-              }}
-            >
-              <Box sx={{ display: 'flex', alignItems: 'center', mb: 2, justifyContent: 'center' }}>
-                <NotificationsIcon sx={{ fontSize: 40, color: '#1976d2', mr: 1 }} />
-                <Typography variant="h6" sx={{ fontWeight: 'bold' }}>Updates</Typography>
-              </Box>
-
-              <Grid container spacing={4} justifyContent="center" alignItems="flex-start" sx={{ width: '100%' }}>
-                {/* Tasks Column */}
-                <Grid item xs={12} sm={6} md={4}>
-                  <Box sx={{ textAlign: 'center', mb: 2 }}>
-                    <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
-                      🗂️ Tasks
-                    </Typography>
-                  </Box>
-                  <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                    <TaskAltIcon color="success" sx={{ mr: 1 }} />
-                    <Typography variant="body2">Follow up with Alice (Product Feedback)</Typography>
-                  </Box>
-                  <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                    <EmailIcon color="primary" sx={{ mr: 1 }} />
-                    <Typography variant="body2">Email summary sent to Globex Corp.</Typography>
-                  </Box>
+            <Paper elevation={6} sx={{ ...blockStyle, textAlign: 'left', p: 4 }}>
+              <Typography variant="h6" fontWeight={700} mb={2}>
+                🔔 Updates & Tasks
+              </Typography>
+              <Grid container spacing={4}>
+                <Grid item xs={12} sm={6}>
+                  <Typography fontWeight={600} mb={1}>🗂️ Tasks</Typography>
+                  <Typography variant="body2" mb={1}><TaskAltIcon sx={{ fontSize: 16, mr: 1 }} /> Follow up with Alice (Product Feedback)</Typography>
+                  <Typography variant="body2"><EmailIcon sx={{ fontSize: 16, mr: 1 }} /> Email summary sent to Globex Corp.</Typography>
                 </Grid>
-
-                {/* Emails & News Column */}
-                <Grid item xs={12} sm={6} md={4}>
-                  <Box sx={{ textAlign: 'center', mb: 2 }}>
-                    <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
-                      📨 Emails & News
-                    </Typography>
-                  </Box>
-                  <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                    <TaskAltIcon color="warning" sx={{ mr: 1 }} />
-                    <Typography variant="body2">Prepare call script for Friday outreach</Typography>
-                  </Box>
-                  <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                    <InfoIcon color="action" sx={{ mr: 1 }} />
-                    <Typography variant="body2">New lead from LinkedIn engagement</Typography>
-                  </Box>
+                <Grid item xs={12} sm={6}>
+                  <Typography fontWeight={600} mb={1}>📨 Emails & News</Typography>
+                  <Typography variant="body2" mb={1}><TaskAltIcon sx={{ fontSize: 16, mr: 1 }} /> Prepare call script for Friday outreach</Typography>
+                  <Typography variant="body2"><InfoIcon sx={{ fontSize: 16, mr: 1 }} /> New lead from LinkedIn engagement</Typography>
                 </Grid>
               </Grid>
             </Paper>
